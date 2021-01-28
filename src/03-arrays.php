@@ -10,6 +10,16 @@
  */
 function repeatArrayValues(array $input)
 {
+    $counted = [];
+
+    for($i = 0; $i < count($input); $i++){
+        for($k = 0; $k < $input[$i]; $k++){
+            array_push($counted, $input[$i]);
+        }
+    }
+
+    return $counted;
+
 }
 
 /**
@@ -22,6 +32,26 @@ function repeatArrayValues(array $input)
  */
 function getUniqueValue(array $input)
 {
+    if(empty($input) === true){
+        $lowestItem = 0;
+    }else{
+        sort($input);
+        $arr = [];
+        $countDuplicates = array_count_values($input);
+
+        foreach($countDuplicates as $key=>$value) {
+            if($value < 2){
+                array_push($arr, $key);
+            }
+        }
+        if(empty($arr) === true){
+            $lowestItem = 0;
+        }else{
+            $lowestItem = min($arr);
+        }
+
+    }
+    return $lowestItem;
 }
 
 /**
@@ -50,4 +80,5 @@ function getUniqueValue(array $input)
  */
 function groupByTag(array $input)
 {
+    array_filter($input);
 }

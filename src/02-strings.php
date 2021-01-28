@@ -64,8 +64,9 @@ function getBrandName(string $noun)
     if($first === $last){
         $bandFirst = $noun;
         $bandSecond = ltrim($noun, $noun[0]);
-
-        return $bandFull = $bandFirst . $bandSecond;
+        $bandFull = $bandFirst . $bandSecond;
+        $bandFull = ucwords($bandFull);
+        return $bandFull;
 
     } else {
         return $bandFull = 'The ' . ucfirst($noun);

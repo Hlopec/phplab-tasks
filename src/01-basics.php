@@ -43,13 +43,21 @@ function getMinuteQuarter(int $minute)
  */
 function isLeapYear(int $year)
 {
-    if($year % 4 == 0 && $year % 100 == 0){
-        return true;
-    }else if($year % 400 == 0){
-        return true;
+    if($year >= 1900){
+        if($year % 400 == 0){
+            return true;
+        }
+        if($year % 4 == 0){
+            return true;
+        }else if($year % 100 == 0){
+            return false;
+        }else{
+            return false;
+        }
     }else{
-        return false;
+        throw new InvalidArgumentException('The year is lower then 1900');
     }
+
 }
 
 /**
