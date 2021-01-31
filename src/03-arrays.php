@@ -32,7 +32,7 @@ function repeatArrayValues(array $input)
  */
 function getUniqueValue(array $input)
 {
-    if(empty($input) === true){
+    if(empty($input)){
         $lowestItem = 0;
     }else{
         sort($input);
@@ -80,26 +80,19 @@ function getUniqueValue(array $input)
  */
 function groupByTag(array $input)
 {
-    $new_array = [];
+        $new_array = [];
 
-    foreach($input as $row){
-        $name = $row['name'];
+        foreach($input as $row){
 
-        foreach($row['tags'] as $tag){
-            if(!array_key_exists($tag, $new_array)){
-                $new_array[$tag] = [];
+            foreach($row['tags'] as $tag){
+                $new_array[$tag][] = $row['name'];
             }
-
-            $new_array[$tag][] = $name;
         }
-    }
 
-    foreach($new_array as $tag => $names){
-        sort($names);
-        $new_array[$tag] = $names;
-    }
+        foreach($new_array as $tag => $names){
+            sort($names);
+            $new_array[$tag] = $names;
+        }
 
-    ksort($new_array);
-
-    return $new_array;
+        return $new_array;
 }

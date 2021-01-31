@@ -13,7 +13,7 @@ function snakeCaseToCamelCase(string $input)
 
     $input = str_replace(' ', '', ucwords($input));
 
-    $input[0] = strtolower($input[0]);
+    $input[0] = lcfirst($input[0]);
 
     return $input;
 }
@@ -30,9 +30,6 @@ function mirrorMultibyteString(string $input)
 {
     $result = "";
     $words = explode(' ', $input);
-
-
-//var_dump($words);
 
     for($i = 0; $i < count($words); $i++){
 

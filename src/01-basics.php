@@ -12,7 +12,9 @@
  */
 function getMinuteQuarter(int $minute)
 {
-    if($minute > 0  && $minute <= 15){
+    if($minute !== 0 || $minute > 60){
+        throw new InvalidArgumentException('$minute is negative of greater then 60');
+    }else if($minute > 0  && $minute <= 15){
         return "first";
     }
     else if($minute > 15 && $minute <=30){
@@ -21,12 +23,8 @@ function getMinuteQuarter(int $minute)
     else if($minute > 30 && $minute <= 45){
         return "third";
     }
-    else if($minute > 45 && $minute <= 60){
+    else if($minute > 45 && $minute <= 60 || $minute == 0){
         return "fourth";
-    }else if($minute == 0){
-        return "fourth";
-    }else{
-        throw new InvalidArgumentException('$minute is negative of greater then 60');
     }
 }
 
@@ -43,21 +41,18 @@ function getMinuteQuarter(int $minute)
  */
 function isLeapYear(int $year)
 {
-    if($year >= 1900){
+    if($year < 1900){
+        throw new InvalidArgumentException('The year is lower then 1900');
+    }else{
         if($year % 400 == 0){
             return true;
         }
         if($year % 4 == 0){
             return true;
-        }else if($year % 100 == 0){
-            return false;
         }else{
             return false;
         }
-    }else{
-        throw new InvalidArgumentException('The year is lower then 1900');
     }
-
 }
 
 /**
@@ -76,7 +71,9 @@ function isSumEqual(string $input)
     if(!is_string($input)){
         throw new InvalidArgumentException('The $input is not a string');
     }
-
+    if (strlen($input) !== 6 ){
+        throw new InvalidArgumentException('The $input not contains 6 digits');
+    }
     if(strlen($input) == 6){
         $first = 0;
         $second = 0;
@@ -94,10 +91,5 @@ function isSumEqual(string $input)
         }else{
             return false;
         }
-    }elseif (strlen($input) < 6){
-        throw new InvalidArgumentException('The $input contains less then 6 digits');
-    }elseif (strlen($input) > 6){
-        throw new InvalidArgumentException('The $input contains more then 6 digits');
     }
-
 }
