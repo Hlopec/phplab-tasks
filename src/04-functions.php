@@ -17,6 +17,7 @@ function sayHello()
  * @param $arg
  * @return string
  */
+
 function sayHelloArgument($arg)
 {
     return "Hello $arg";

@@ -11,9 +11,7 @@ function snakeCaseToCamelCase(string $input)
 {
     $input = str_replace('_', ' ', $input);
 
-    $input = str_replace(' ', '', ucwords($input));
-
-    $input[0] = lcfirst($input[0]);
+    $input = str_replace(' ', '', lcfirst(ucwords($input)));
 
     return $input;
 }
