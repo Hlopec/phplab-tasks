@@ -5,10 +5,21 @@ use PHPUnit\Framework\TestCase;
 
 class SayHelloArgumentWrapperTest extends TestCase
 {
-    public function testNegative()
+    /**
+     * @dataProvider positiveDataProvider
+     */
+    public function testException($arg)
     {
         $this->expectException(InvalidArgumentException::class);
+        sayHelloArgumentWrapper($arg);
+    }
 
-        sayHelloArgumentWrapper([1, 5, 6]);
+    public function positiveDataProvider()
+    {
+        return [
+            [[1, 2, 5]],
+            [12.12],
+            [null]
+        ];
     }
 }
